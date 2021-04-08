@@ -183,6 +183,8 @@ void tt_ecdhe_over_sm2()
 
     bio = BIO_new_fp(stdout, BIO_NOCLOSE);
 
+    // SM2有个专门的密钥交换协议，但协议要求两端都要有两套公私钥，一套一直用的，一套临时生成的
+    // 这里使用的都是基本的ECDHE，只是用了SM2曲线，而不是SM2的那个密钥交换协议
     gen_sm2_key(&sm2_pkey);
     gen_sm2_key(&sm2_peer_pkey);
 
